@@ -41,8 +41,7 @@ clc; clear;
 %% specify include paths
 addpath('mi');            % Peng's mutual information
 addpath('borg-matlab');   % Borg
-addpath('paretofront');   % paretofront toolbox
-
+addpath('pareto_front');   % paretofront toolbox
 
 
 %% Load and prepare dataset
@@ -97,7 +96,7 @@ borg_param={'rngstate', 1 }; % setting seed to enable results' reproducibility
 borg(...
     options.nvars,options.nobjs,options.nconstrs,...
     options.objectiveFcn, options.NFE,...
-    options.lowerBounds, options.upperBounds, epsilons, borg_param);
+    epsilons, options.lowerBounds, options.upperBounds, borg_param);
 
 
 % get solutions indexes for WQEISS
@@ -130,7 +129,7 @@ ix_solutions = zeros(numel(archive),1); % re-initialize ix_solutions.
 borg(...
     options.nvars,options.nobjs,options.nconstrs,...
     options.objectiveFcn, options.NFE,...
-    options.lowerBounds, options.upperBounds, epsilons);
+    epsilons, options.lowerBounds, options.upperBounds);
 % get solutions indexes for WMOSS
 ixWMOSS  = find(ix_solutions); 
 
@@ -160,7 +159,7 @@ ix_solutions = zeros(numel(archive),1); % re-initialize ix_solutions.
 borg(...
     options.nvars,options.nobjs,options.nconstrs,...
     options.objectiveFcn, options.NFE,...
-    options.lowerBounds, options.upperBounds, epsilons);      
+    epsilons, options.lowerBounds, options.upperBounds);      
 % get solutions indexes for FQEISS
 ixFQEISS  = find(ix_solutions); 
 
